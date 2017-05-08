@@ -1,4 +1,4 @@
-from ubuntu:latest
+FROM ubuntu:latest
 
 ENV LIBVER=0.9.5
 ENV CATVER=1.3.1
