@@ -15,6 +15,6 @@ ENV HEADERDIR=/opt/mapr/include/librdkafka
 
 ENV LD_LIBRARY_PATH=/opt/mapr/lib:$JAVA_HOME/jre/lib/amd64/server
 
-RUN wget https://github.com/edenhill/kafkacat/archive/$CATVER.tar.gz && tar zxf $CATVER.tar.gz && cd kafkacat-$CATVER && ./configure &&  make --CFLAGS="-Wall -I/opt/mapr/include/librdkafka -g -std=c99" && make install && ldconfig && cd .. && rm -rf kafkacat-$CATVER && rm $CATVER.tar.gz
+RUN wget https://github.com/edenhill/kafkacat/archive/$CATVER.tar.gz && tar zxf $CATVER.tar.gz && cd kafkacat-$CATVER && ./configure --libdir=/opt/mapr/lib &&  make --CFLAGS="-Wall -I/opt/mapr/include/librdkafka -g -std=c99" && make install && ldconfig && cd .. && rm -rf kafkacat-$CATVER && rm $CATVER.tar.gz
 
 CMD ["/bin/bash"]
