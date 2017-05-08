@@ -1,4 +1,4 @@
-from ubuntu:latest
+from ubuntu:trusty
 
 ENV MAPRVER=5.2.1
 ENV MAPRMEP=3.0
