@@ -9,4 +9,4 @@ RUN wget https://github.com/edenhill/librdkafka/archive/v$LIBVER.tar.gz && tar z
 
 RUN wget https://github.com/edenhill/kafkacat/archive/$CATVER.tar.gz && tar zxf $CATVER.tar.gz && cd kafkacat-$CATVER && ./configure &&  make && make install && ldconfig && cd .. && rm -rf kafkacat-$CATVER && rm $CATVER.tar.gz
 
-CMD["/bin/bash"]
+CMD ["/bin/bash"]
