@@ -11,6 +11,10 @@ RUN wget http://archive.mapr.com/releases/v5.2.1/ubuntu/mapr-client-5.2.1.42646.
 
 RUN wget http://archive.mapr.com/releases/MEP/MEP-3.0/ubuntu/mapr-librdkafka_0.9.1.201703301726_all.deb && dpkg -i mapr-librdkafka_0.9.1.201703301726_all.deb && rm mapr-librdkafka_0.9.1.201703301726_all.deb
 
-RUN wget https://github.com/edenhill/kafkacat/archive/$CATVER.tar.gz && tar zxf $CATVER.tar.gz && cd kafkacat-$CATVER && ./configure &&  make && make install && ldconfig && cd .. && rm -rf kafkacat-$CATVER && rm $CATVER.tar.gz
+ENV HEADERDIR=/opt/mapr/include/librdkafka
+
+ENV LD_LIBRARY_PATH=/opt/mapr/lib:$JAVA_HOME/jre/lib/amd64/server
+
+RUN wget https://github.com/edenhill/kafkacat/archive/$CATVER.tar.gz && tar zxf $CATVER.tar.gz && cd kafkacat-$CATVER && ./configure -Wall -I$HEADERDIR -g -std=c99 &&  make && make install && ldconfig && cd .. && rm -rf kafkacat-$CATVER && rm $CATVER.tar.gz
 
 CMD ["/bin/bash"]
