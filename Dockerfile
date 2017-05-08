@@ -20,6 +20,6 @@ RUN wget https://github.com/edenhill/kafkacat/archive/$CATVER.tar.gz && tar zxf 
 #RUN ./configure --libdir=/opt/mapr/lib --includedir=/opt/mapr/include 
 RUN cd kafkacat-$CATVER && ./configure --libdir=/opt/mapr/lib --includedir=/opt/mapr/include --enable-json
 
-RUN cd kafkacat-$CATVER make && make install && ldconfig && cd .. && rm -rf kafkacat-$CATVER && rm $CATVER.tar.gz
+RUN cd kafkacat-$CATVER && make && make install && ldconfig && cd .. && rm -rf kafkacat-$CATVER && rm $CATVER.tar.gz
 
 CMD ["/bin/bash"]
