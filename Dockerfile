@@ -18,8 +18,8 @@ ENV LD_LIBRARY_PATH=/opt/mapr/lib:$JAVA_HOME/jre/lib/amd64/server
 RUN wget https://github.com/edenhill/kafkacat/archive/$CATVER.tar.gz && tar zxf $CATVER.tar.gz && cd kafkacat-$CATVER 
 
 #RUN ./configure --libdir=/opt/mapr/lib --includedir=/opt/mapr/include 
-RUN ./configure --libdir=/opt/mapr/lib --includedir=/opt/mapr/include --enable-static --enable-json
+RUN cd kafkacat-$CATVER && ./configure --libdir=/opt/mapr/lib --includedir=/opt/mapr/include --enable-static --enable-json
 
-RUN make && make install && ldconfig && cd .. && rm -rf kafkacat-$CATVER && rm $CATVER.tar.gz
+RUN cd kafkacat-$CATVER make && make install && ldconfig && cd .. && rm -rf kafkacat-$CATVER && rm $CATVER.tar.gz
 
 CMD ["/bin/bash"]
